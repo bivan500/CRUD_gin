@@ -3,11 +3,15 @@ package main
 import (
 	crudApp "CRUD_GIN"
 	"CRUD_GIN/pkg/handler"
+	"CRUD_GIN/pkg/repository"
+	"CRUD_GIN/pkg/service"
 	"log"
 )
 
 func main() {
-	handlers := new(handler.Handler)
+	repos := repository.NewRepository()
+	services := service.NewService(repos)
+	handlers := handler.NewHandler(services)
 	srv := new(crudApp.Server)
 	err := srv.Run("8080", handlers.InitRoutes())
 	if err != nil {
