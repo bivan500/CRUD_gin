@@ -13,6 +13,6 @@ type ReadList struct {
 	Description string `json:"description"`
 }
 
-type ListsBook struct {
+type UsersReadList struct {
 	Id int
 }
