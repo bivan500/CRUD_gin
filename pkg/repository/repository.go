@@ -1,8 +1,14 @@
 package repository
 
-import "github.com/jmoiron/sqlx"
+import (
+	crudApp "CRUD_GIN"
+
+	"github.com/jmoiron/sqlx"
+)
 
 type Auth interface {
+	CreateUser(user crudApp.User) (int, error)
+	GetUser(username string, password string) (crudApp.User, error)
 }
 
 type BookList interface {
@@ -18,5 +24,7 @@ type Repository struct {
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
-	return &Repository{}
+	return &Repository{
+		Auth: newAuthPostgres(db),
+	}
 }

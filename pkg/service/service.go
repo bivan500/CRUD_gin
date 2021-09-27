@@ -1,8 +1,14 @@
 package service
 
-import "CRUD_GIN/pkg/repository"
+import (
+	crudApp "CRUD_GIN"
+	"CRUD_GIN/pkg/repository"
+)
 
 type Auth interface {
+	CreateUser(user crudApp.User) (int, error)
+	GenerateToken(user crudApp.User) (string, error)
+	ParseToken(token string) (int, error)
 }
 
 type BookList interface {
@@ -17,6 +23,8 @@ type Service struct {
 	Book
 }
 
-func NewService(r *repository.Repository) *Service {
-	return &Service{}
+func NewService(repos *repository.Repository) *Service {
+	return &Service{
+		Auth: NewAuthService(repos.Auth),
+	}
 }
