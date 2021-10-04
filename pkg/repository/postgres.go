@@ -6,7 +6,7 @@ import (
 
 const (
 	usersTable           = "users"
-	usersReadListTable   = "users_list"
+	usersReadListTable   = "user_lists"
 	readListsTable       = "lists"
 	booksInReadListTable = "books_in_list"
 	bookTable            = "book"
