@@ -12,6 +12,8 @@ type Auth interface {
 }
 
 type BookList interface {
+	Create(userId int, list crudApp.ReadList) (int, error)
+	GetLists(userId int) ([]crudApp.ReadList, error)
 }
 
 type Book interface {
@@ -25,6 +27,7 @@ type Service struct {
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
-		Auth: NewAuthService(repos.Auth),
+		Auth:     NewAuthService(repos.Auth),
+		BookList: NewReadListService(repos.BookList),
 	}
 }

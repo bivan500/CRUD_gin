@@ -8,11 +8,13 @@ type Book struct {
 }
 
 type ReadList struct {
-	Id          int    `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
+	Id          int    `json:"id" db:"id"`
+	Title       string `json:"title" db:"title" binding:"requierd"`
+	Description string `json:"description" db:"description"`
 }
 
 type UsersReadList struct {
-	Id int
+	Id         int
+	UserId     int
+	ReadListId int
 }

@@ -12,6 +12,8 @@ type Auth interface {
 }
 
 type BookList interface {
+	Create(userId int, list crudApp.ReadList) (int, error)
+	GetLists(userId int) ([]crudApp.ReadList, error)
 }
 
 type Book interface {
@@ -25,6 +27,7 @@ type Repository struct {
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		Auth: newAuthPostgres(db),
+		Auth:     newAuthPostgres(db),
+		BookList: NewListPostgres(db),
 	}
 }
