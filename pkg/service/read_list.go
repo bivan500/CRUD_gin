@@ -20,3 +20,15 @@ func (s *ReadListService) Create(userId int, list crudApp.ReadList) (int, error)
 func (s *ReadListService) GetLists(userId int) ([]crudApp.ReadList, error) {
 	return s.repo.GetLists(userId)
 }
+
+func (s *ReadListService) UpdateList(userId int, listId int, list crudApp.ReadList) (bool, error) {
+	return s.repo.UpdateList(userId, listId, list)
+}
+
+func (s *ReadListService) GetListsById(listId int) (crudApp.ReadList, error) {
+	return s.repo.GetListsById(listId)
+}
+
+func (s *ReadListService) DeleteList(userId int, ListId int) error {
+	return s.repo.DeleteList(userId, ListId)
+}
